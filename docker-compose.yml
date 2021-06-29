@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  nginx:
+    depends_on:
+      - client
+      - backend
+    restart: always # because it is routing traffic to our entire app
+    image: 'lukondefmwila/dkr-multicontainer-app-nginx'
+    ports:
+      - '80:80'
+  client:
+    image: 'lukondefmwila/dkr-multicontainer-app-client'
+    restart: on-failure
+    container_name: client
+  backend:
+    image: 'lukondefmwila/dkr-multicontainer-app-backend'
+    restart: on-failure
+    container_name: backend

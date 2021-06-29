@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: client
+  name: client
+spec:
+  containers:
+    - image: lukondefmwila/dkr-multicontainer-app-client
+      name: client
+      resources: {}
+  restartPolicy: OnFailure
+status: {}
