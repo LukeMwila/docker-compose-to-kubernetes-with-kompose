@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
@@ -18,13 +19,17 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
+        kompose.service.type: LoadBalancer
         kompose.version: 1.22.0 (955b78124)
       creationTimestamp: null
       labels:
         io.kompose.service: nginx
     spec:
       containers:
-        - image: lukondefmwila/dkr-multicontainer-app-nginx
+        - env:
+            - name: GET_HOSTS_FROM
+              value: dns
+          image: lukondefmwila/dkr-multicontainer-app-nginx
           name: nginx
           ports:
             - containerPort: 80

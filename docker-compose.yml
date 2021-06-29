@@ -8,11 +8,19 @@ services:
     image: 'lukondefmwila/dkr-multicontainer-app-nginx'
     ports:
       - '80:80'
+    environment:
+      - GET_HOSTS_FROM=dns
+    labels:
+      kompose.service.type: LoadBalancer
   client:
     image: 'lukondefmwila/dkr-multicontainer-app-client'
     restart: on-failure
     container_name: client
+    environment:
+      - GET_HOSTS_FROM=dns
   backend:
     image: 'lukondefmwila/dkr-multicontainer-app-backend'
     restart: on-failure
     container_name: backend
+    environment:
+      - GET_HOSTS_FROM=dns

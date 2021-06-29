@@ -10,7 +10,10 @@ metadata:
   name: client
 spec:
   containers:
-    - image: lukondefmwila/dkr-multicontainer-app-client
+    - env:
+        - name: GET_HOSTS_FROM
+          value: dns
+      image: lukondefmwila/dkr-multicontainer-app-client
       name: client
       resources: {}
   restartPolicy: OnFailure
