@@ -1,26 +1,24 @@
 version: "3.3"
-services:
-  nginx:
-    depends_on:
-      - client
-      - backend
-    restart: always # because it is routing traffic to our entire app
-    image: 'lukondefmwila/dkr-multicontainer-app-nginx'
-    ports:
-      - '80:80'
-    environment:
-      - GET_HOSTS_FROM=dns
-    labels:
-      kompose.service.type: LoadBalancer
+services: 
   client:
     image: 'lukondefmwila/dkr-multicontainer-app-client'
+    #build: 
+     # dockerfile: Dockerfile 
+     # context: ./client
     restart: on-failure
     container_name: client
-    environment:
-      - GET_HOSTS_FROM=dns
+    labels:
+      kompose.service.type: LoadBalancer
+    ports:
+      - '3000:3000'
   backend:
     image: 'lukondefmwila/dkr-multicontainer-app-backend'
+    #build: 
+     # dockerfile: Dockerfile 
+     # context: ./backend
     restart: on-failure
     container_name: backend
-    environment:
-      - GET_HOSTS_FROM=dns
+    labels:
+      kompose.service.type: LoadBalancer
+    ports:
+      - '3001:3001'

@@ -7,15 +7,15 @@ metadata:
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
-    io.kompose.service: nginx
-  name: nginx
+    io.kompose.service: backend
+  name: backend
 spec:
   ports:
-    - name: "80"
-      port: 80
-      targetPort: 80
+    - name: "3001"
+      port: 3001
+      targetPort: 3001
   selector:
-    io.kompose.service: nginx
+    io.kompose.service: backend
   type: LoadBalancer
 status:
   loadBalancer: {}

@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
   const [toDoItems, updateToDoItems] = React.useState([]);
 
   React.useEffect(() => {
     const getToDoItems = async () => {
-      const response = await fetch(
-        `/backend/v1/to-do`
+      const response = await axios.get(
+        `${process.env.BACKEND_SERVICE_HOST}:${process.env.BACKEND_SERVICE_PORT}/v1/to-do`
       );
 
-      const items = await response.json();
+      // const items = await response.json();
+      const items = await response.data;
       if (items && Array.isArray(items) && items.length) {
         updateToDoItems(items);
       }

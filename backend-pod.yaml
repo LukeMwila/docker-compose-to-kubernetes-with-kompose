@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   annotations:
     kompose.cmd: kompose convert
+    kompose.service.type: LoadBalancer
     kompose.version: 1.22.0 (955b78124)
   creationTimestamp: null
   labels:
@@ -10,11 +11,10 @@ metadata:
   name: backend
 spec:
   containers:
-    - env:
-        - name: GET_HOSTS_FROM
-          value: dns
-      image: lukondefmwila/dkr-multicontainer-app-backend
+    - image: lukondefmwila/dkr-multicontainer-app-backend
       name: backend
+      ports:
+        - containerPort: 3001
       resources: {}
   restartPolicy: OnFailure
 status: {}
